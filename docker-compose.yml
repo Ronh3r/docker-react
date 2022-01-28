@@ -1,0 +1,25 @@
+version: '3'
+services:
+ node-app:
+  container_name: node-app
+  build:
+   context: .
+   dockerfile: Dockerfile-Pro
+  ports:
+   - "3000:3000"
+  volumes:
+   - /app/node_modules
+   - .:/app
+  networks:
+   - net
+ ngnix-server:
+  container_name: ngnix-server
+  build:
+   context: .
+   dockerfile: Dockerfile-Pro
+  ports:
+   - "8080:80"
+  networks:
+   - net
+networks:
+ net:
